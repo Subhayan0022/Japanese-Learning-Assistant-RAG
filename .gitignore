@@ -1,0 +1,52 @@
+# Virtual environment
+venv/
+.venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Environment variables
+.env
+.env.*
+
+# FAISS index files
+*.index
+*.faiss
+
+# Data files (add manually what you want to track)
+data/*.txt
+data/*.pdf
+data/*.csv
+data/*.json
+
+# Embeddings / numpy arrays
+*.npy
+*.npz
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Streamlit
+.streamlit/secrets.toml
