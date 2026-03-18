@@ -1,0 +1,23 @@
+import streamlit as st
+import requests
+
+st.set_page_config(page_title="Japanese Learning Assistant", page_icon="🎌")
+
+st.title("Japanese Learning Assistant")
+st.write("Ask any questions about Japanese grammar, vocabulary, or Kanji!")
+
+question = st.text_area("Your question: ", placeholder="e.g. What does 食べる mean?")
+
+if st.button("Ask"):
+    if question.strip() == "":
+        st.warning("Please enter a valid question.")
+
+    else:
+        with st.spinner("Thinking..."):
+            response = requests.post(
+                "http://127.0.0.1:8000/ask",
+                json={"question": question},
+            )
+            answer = response.json().get("answer", "No answer for this question.")
+            st.markdown("### Answer")
+            st.write(answer)
