@@ -18,6 +18,10 @@ if st.button("Ask"):
                 "http://127.0.0.1:8000/ask",
                 json={"question": question},
             )
-            answer = response.json().get("answer", "No answer for this question.")
+            data = response.json()
             st.markdown("### Answer")
-            st.write(answer)
+            st.write(data.get("answer", "No answer for this question."))
+
+            st.markdown("### Sources")
+            for source in data.get("sources", []):
+                st.write(f"- Level: {source['level']} | Type: {source['type']} | Source: {source['source']}")
