@@ -9,7 +9,10 @@ def generate_response(prompt):
         json={
             "model": MODEL_NAME,
             "prompt": prompt,
-            "stream": False
+            "stream": False,
+            "options":{
+                "temperature": 0.2
+            }
         }
     )
     return response.json().get("response", "")
