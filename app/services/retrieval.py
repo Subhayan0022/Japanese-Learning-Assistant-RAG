@@ -1,23 +1,19 @@
 import json
 import faiss
-import numpy as np
-from sentence_transformers import SentenceTransformer
-
-MODEL_NAME = "paraphrase-multilingual-MiniLM-L12-v2"
+from app.services.embeddings import embed_query
+from config.settings import FAISS_INDEX_PATH, CHUNKS_PATH
 
 class RetrievalIndex:
     def __init__(self):
-        self.model = SentenceTransformer(MODEL_NAME)
-        self.index = faiss.read_index("data/faiss_index/faiss.index")
+        self.index = faiss.read_index(FAISS_INDEX_PATH)
 
-        with open("data/processed/chunks.json", "r", encoding="utf-8") as f:
+        with open(CHUNKS_PATH, "r", encoding="utf-8") as f:
             self.chunks = json.load(f)
 
         print(f"Retrieval Index ready with: {len(self.chunks)} chunks loaded")
 
-
     def search(self, query, top_k=2):
-        query_vector = self.model.encode([query])
+        query_vector = embed_query(query)
         distances, indices = self.index.search(query_vector, top_k)
 
         results = []

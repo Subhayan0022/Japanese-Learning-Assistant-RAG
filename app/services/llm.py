@@ -1,7 +1,5 @@
 import requests
-
-OLLAMA_URL = "http://localhost:11434/api/generate"
-MODEL_NAME = "mistral"
+from config.settings import OLLAMA_URL, MODEL_NAME
 
 def generate_response(prompt):
     response = requests.post(

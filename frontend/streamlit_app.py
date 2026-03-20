@@ -7,6 +7,7 @@ st.title("Japanese Learning Assistant")
 st.write("Ask any questions about Japanese grammar, vocabulary, or Kanji!")
 
 question = st.text_area("Your question: ", placeholder="e.g. What does 食べる mean?")
+level = st.selectbox("Your JLPT level:", ["Any", "N5", "N4", "N3", "N2", "N1"])
 
 if st.button("Ask"):
     if question.strip() == "":
@@ -14,9 +15,13 @@ if st.button("Ask"):
 
     else:
         with st.spinner("Thinking..."):
+            payload = {"query": question}
+            if level != "Any":
+                payload["level"] = level
+
             response = requests.post(
-                "http://127.0.0.1:8000/ask",
-                json={"question": question},
+                "http://127.0.0.1:8000/chat",
+                json=payload,
             )
             data = response.json()
             st.markdown("### Answer")

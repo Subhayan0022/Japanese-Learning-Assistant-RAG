@@ -7,9 +7,9 @@ from app.services.rag_pipeline import ask
 router = APIRouter()
 
 class QuestionRequest(BaseModel):
-    question: str
+    query: str
     level: Optional[str] = None
 
-@router.post("/ask")
+@router.post("/chat")
 def ask_question(request: QuestionRequest):
-    return ask(request.question, level = request.level)
+    return ask(request.query, level=request.level)

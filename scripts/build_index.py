@@ -1,6 +1,6 @@
-import json
 import numpy as np
 import faiss
+from config.settings import EMBEDDINGS_PATH, FAISS_INDEX_PATH
 
 def build_index(embeddings):
     dimensions = embeddings.shape[1]
@@ -11,7 +11,7 @@ def build_index(embeddings):
 
 
 if __name__ == "__main__":
-    embeddings = np.load("data/processed/embeddings.npy")
+    embeddings = np.load(EMBEDDINGS_PATH)
     faiss_index = build_index(embeddings)
-    faiss.write_index(faiss_index, "data/faiss_index/faiss.index")
-    print("Faiss Index saved to data/faiss_index/faiss.index")
+    faiss.write_index(faiss_index, FAISS_INDEX_PATH)
+    print(f"Faiss Index saved to {FAISS_INDEX_PATH}")

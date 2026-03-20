@@ -1,4 +1,5 @@
 import json
+from config.settings import RAW_DATA_PATH, CHUNKS_PATH
 
 def parse_chunks(filepath):
     with open(filepath, "r", encoding="utf-8") as f:
@@ -25,8 +26,7 @@ def parse_chunks(filepath):
     return chunks
 
 if __name__ == "__main__":
-    filepath = "data/raw/japanese_grammar.txt"
-    chunks = parse_chunks(filepath)
+    chunks = parse_chunks(RAW_DATA_PATH)
 
     print(f"Found {len(chunks)} chunks")
     for idx, chunk in enumerate(chunks):
@@ -35,7 +35,7 @@ if __name__ == "__main__":
         print(f"Text Preview {chunk['text'][:80]}....")
         print()
 
-    with open("data/processed/chunks.json", "w", encoding="utf-8") as f:
+    with open(CHUNKS_PATH, "w", encoding="utf-8") as f:
         json.dump(chunks, f, ensure_ascii=False, indent=4)
 
-    print("Chunks saved to data/processed/chunks.json")
+    print(f"Chunks saved to {CHUNKS_PATH}")

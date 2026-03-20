@@ -1,12 +1,11 @@
 from app.services.retrieval import RetrievalIndex
 from app.services.llm import generate_response
 from app.services.prompt_builder import build_prompt, get_level_instruction
+from config.settings import DISTANCE_THRESHOLD, TOP_K
 
 retriever = RetrievalIndex()
 
-DISTANCE_THRESHOLD = 24.0
-
-def ask(question, top_k=2, level=None):
+def ask(question, top_k=TOP_K, level=None):
     results = retriever.search(question, top_k=top_k)
 
     relevant_results = [r for r in results if r["distance"] < DISTANCE_THRESHOLD]
