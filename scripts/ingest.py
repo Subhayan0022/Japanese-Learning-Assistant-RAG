@@ -25,7 +25,7 @@ def parse_chunks(filepath):
     return chunks
 
 if __name__ == "__main__":
-    filepath = "data/japanese_grammar.txt"
+    filepath = "data/raw/japanese_grammar.txt"
     chunks = parse_chunks(filepath)
 
     print(f"Found {len(chunks)} chunks")
@@ -35,7 +35,7 @@ if __name__ == "__main__":
         print(f"Text Preview {chunk['text'][:80]}....")
         print()
 
-    with open("data/chunks.json", "w", encoding="utf-8") as f:
+    with open("data/processed/chunks.json", "w", encoding="utf-8") as f:
         json.dump(chunks, f, ensure_ascii=False, indent=4)
 
-    print("Chunks saved to data/chunks.json")
+    print("Chunks saved to data/processed/chunks.json")

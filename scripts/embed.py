@@ -17,9 +17,9 @@ def generate_embeddings(chunks):
     return embeddings
 
 if __name__ == "__main__":
-    with open("data/chunks.json", "r", encoding="utf-8") as f:
+    with open("data/processed/chunks.json", "r", encoding="utf-8") as f:
         chunks = json.load(f)
     embeddings = generate_embeddings(chunks)
 
-    np.save("data/embeddings.npy", embeddings)
-    print(f"Embeddings saved to data/embeddings.npy")
+    np.save("data/processed/embeddings.npy", embeddings)
+    print(f"Embeddings saved to data/processed/embeddings.npy")

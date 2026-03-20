@@ -1,0 +1,41 @@
+---
+level: N5
+type: grammar
+source: japanese_grammar.txt
+---
+Topic: は (wa) - Topic Marker
+は is used to mark the topic of a sentence. It tells the listener what the sentence is about.
+Example: 私は学生です。(Watashi wa gakusei desu.) - I am a student.
+Note: は is written as "ha" in romaji but pronounced "wa" when used as a particle.
+
+---
+level: N5
+type: grammar
+source: japanese_grammar.txt
+---
+Topic: が (ga) - Subject Marker
+が marks the grammatical subject of a sentence. It emphasizes who is doing the action.
+Example: 猫がいます。(Neko ga imasu.) - There is a cat.
+Note: は vs が is one of the most common points of confusion for beginners.
+
+---
+level: N5
+type: vocabulary
+source: japanese_grammar.txt
+---
+Topic: 食べる (taberu) - To Eat
+食べる is a Group 2 verb meaning "to eat".
+Example: 私はすしを食べる。(Watashi wa sushi wo taberu.) - I eat sushi.
+Conjugations: 食べます (polite), 食べない (negative), 食べた (past)
+
+---
+level: N4
+type: grammar
+source: japanese_grammar.txt
+---
+Topic: ている (te iru) - Ongoing Action
+ている expresses an action currently in progress, similar to "-ing" in English.
+Example: 食べています。(Tabete imasu.) - I am eating.
+Note: In casual speech, ている is often shortened to てる (teru).
+
+---

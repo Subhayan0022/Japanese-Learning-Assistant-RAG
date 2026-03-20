@@ -8,9 +8,9 @@ MODEL_NAME = "paraphrase-multilingual-MiniLM-L12-v2"
 class RetrievalIndex:
     def __init__(self):
         self.model = SentenceTransformer(MODEL_NAME)
-        self.index = faiss.read_index("data/faiss.index")
+        self.index = faiss.read_index("data/faiss_index/faiss.index")
 
-        with open("data/chunks.json", "r", encoding="utf-8") as f:
+        with open("data/processed/chunks.json", "r", encoding="utf-8") as f:
             self.chunks = json.load(f)
 
         print(f"Retrieval Index ready with: {len(self.chunks)} chunks loaded")

@@ -11,7 +11,7 @@ def build_index(embeddings):
 
 
 if __name__ == "__main__":
-    embeddings = np.load("data/embeddings.npy")
+    embeddings = np.load("data/processed/embeddings.npy")
     faiss_index = build_index(embeddings)
-    faiss.write_index(faiss_index, "data/faiss.index")
-    print("Faiss Index saved to data/faiss.index")
+    faiss.write_index(faiss_index, "data/faiss_index/faiss.index")
+    print("Faiss Index saved to data/faiss_index/faiss.index")

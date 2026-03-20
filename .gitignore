@@ -21,11 +21,9 @@ build/
 *.index
 *.faiss
 
-# Data files (add manually what you want to track)
-data/*.txt
-data/*.pdf
-data/*.csv
-data/*.json
+# Processed data (generated files)
+data/processed/
+data/faiss_index/
 
 # Embeddings / numpy arrays
 *.npy
