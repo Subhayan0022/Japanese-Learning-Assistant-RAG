@@ -39,3 +39,27 @@ def build_prompt(context, question, level_instruction):
 
         Notes:
         (Only mention notes found in the context)"""
+
+
+def build_breakdown_prompt(sentence, context, level_instruction):
+    return f""" You are a Japanese language teaching assistant.
+    STRICT RULES:
+    - Break down the given Japanese sentence word by word.
+    - For each word, provide: the word, its reading in hiragana, romanji, part of speech, and English meaning.
+    - Use the context below to ground your explanations.
+    - If a grammar point appears in the context, reference it.
+    - Do NOT make up grammar rules not found in the context.
+    
+    STUDENT LEVEL: {level_instruction}
+    
+    CONTEXT: {context}
+    
+    SENTENCE: {sentence}
+    
+    Provide your breakdown in this format:
+    
+    Breakdown:
+    - [word] ([reading]) - [part of speech] - [meaning]
+    
+    Grammar Notes:
+    (Explain any grammar patterns used in the sentence, based on context)"""
