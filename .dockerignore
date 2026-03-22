@@ -1,0 +1,10 @@
+venv/
+.venv/
+.git/
+.idea/
+__pycache__/
+*.pyc
+.gitignore
+.dockerignore
+LICENSE
+README.md

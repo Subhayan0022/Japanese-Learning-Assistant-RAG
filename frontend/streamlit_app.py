@@ -11,6 +11,11 @@ st.set_page_config(page_title="Japanese Learning Assistant", page_icon="🎌")
 
 st.title("Japanese Learning Assistant")
 
+if "quiz_questions" not in st.session_state:
+    st.session_state["quiz_questions"] = []
+if "quiz_submitted" not in st.session_state:
+    st.session_state["quiz_submitted"] = False
+
 level = st.selectbox("Your JLPT level:", ["Any", "N5", "N4", "N3", "N2", "N1"])
 
 tab_chat, tab_breakdown, tab_quiz = st.tabs(["Ask a Question", "Sentence Breakdown", "Quiz"])
