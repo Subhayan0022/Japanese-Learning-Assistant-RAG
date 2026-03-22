@@ -1,15 +1,12 @@
-from typing import Optional
-
-from fastapi import APIRouter
-from pydantic import BaseModel
+from fastapi import APIRouter, HTTPException
+from app.models import QuestionRequest
 from app.services.rag_pipeline import ask
 
 router = APIRouter()
 
-class QuestionRequest(BaseModel):
-    query: str
-    level: Optional[str] = None
-
 @router.post("/chat")
 def ask_question(request: QuestionRequest):
-    return ask(request.query, level=request.level)
+    try:
+        return ask(request.query, level=request.level)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))

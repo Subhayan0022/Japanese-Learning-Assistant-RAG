@@ -39,3 +39,75 @@ Example: 食べています。(Tabete imasu.) - I am eating.
 Note: In casual speech, ている is often shortened to てる (teru).
 
 ---
+level: N5
+type: kanji
+source: japanese_grammar.txt
+---
+Topic: 日 (nichi/hi) - Day/Sun
+日 is one of the most common kanji. It means "day" or "sun".
+Readings: にち (nichi), じつ (jitsu), ひ (hi)
+Example: 今日は何曜日ですか。(Kyou wa nan youbi desu ka.) - What day is it today?
+Note: 日 appears in many time-related words like 日曜日 (nichiyoubi - Sunday), 毎日 (mainichi - every day).
+
+---
+level: N5
+type: grammar
+source: japanese_grammar.txt
+---
+Topic: です (desu) - Copula
+です is the polite form of the copula, similar to "is/am/are" in English.
+Example: 私は学生です。(Watashi wa gakusei desu.) - I am a student.
+Note: In casual speech, です is often dropped or replaced with だ (da).
+
+---
+level: N5
+type: vocabulary
+source: japanese_grammar.txt
+---
+Topic: 行く (iku) - To Go
+行く is a Group 1 verb meaning "to go".
+Example: 学校に行く。(Gakkou ni iku.) - I go to school.
+Conjugations: 行きます (ikimasu - polite), 行かない (ikanai - negative), 行った (itta - past)
+Note: The past tense is irregular: 行った (itta), not 行いた.
+
+---
+level: N4
+type: grammar
+source: japanese_grammar.txt
+---
+Topic: たい (tai) - Want to do
+たい is attached to the verb stem to express desire or wanting to do something.
+Example: 日本に行きたい。(Nihon ni ikitai.) - I want to go to Japan.
+Note: たい conjugates like an i-adjective: 行きたくない (ikitakunai - don't want to go).
+
+---
+level: N4
+type: grammar
+source: japanese_grammar.txt
+---
+Topic: てください (te kudasai) - Please do
+てください is used to make polite requests.
+Example: 見てください。(Mite kudasai.) - Please look.
+Note: For negative requests, use ないでください (naide kudasai): 触らないでください (sawaranaide kudasai - Please don't touch).
+
+---
+level: N3
+type: grammar
+source: japanese_grammar.txt
+---
+Topic: ようにする (you ni suru) - To try to / Make effort to
+ようにする expresses making an effort or habit of doing something.
+Example: 毎日運動するようにしている。(Mainichi undou suru you ni shite iru.) - I try to exercise every day.
+Note: Different from ようになる (you ni naru) which means "to come to be able to" or a change in state.
+
+---
+level: N3
+type: vocabulary
+source: japanese_grammar.txt
+---
+Topic: 届ける (todokeru) - To deliver
+届ける is a Group 2 verb meaning "to deliver" or "to report".
+Example: 荷物を届けます。(Nimotsu wo todokemasu.) - I will deliver the package.
+Note: 届く (todoku) is the intransitive form meaning "to arrive" or "to reach".
+
+---
