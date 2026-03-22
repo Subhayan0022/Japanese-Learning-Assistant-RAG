@@ -63,3 +63,34 @@ def build_breakdown_prompt(sentence, context, level_instruction):
     
     Grammar Notes:
     (Explain any grammar patterns used in the sentence, based on context)"""
+
+def build_quiz_prompt(topic, context, level_instruction, num_of_questions):
+    return f"""You are a Japanese language quiz generator.
+
+STRICT RULES:
+- You MUST generate EXACTLY {num_of_questions} questions. Not more, not less.
+- Each question must test actual Japanese language knowledge (grammar, vocabulary, meaning, usage).
+- Each question must have 4 options (A, B, C, D) with exactly one correct answer.
+- Include Japanese characters in the questions and options where appropriate.
+- Do NOT ask questions about section titles, page numbers, or document structure.
+- Focus on practical knowledge: meanings, translations, correct usage, conjugations.
+
+STUDENT LEVEL:
+{level_instruction}
+
+CONTEXT:
+{context}
+
+TOPIC: {topic}
+
+Provide the quiz in this format:
+
+Q1: [question]
+A) [option]
+B) [option]
+C) [option]
+D) [option]
+Answer: [letter]
+
+Q2: [question]
+...up to Q{num_of_questions} only. Stop after Q{num_of_questions}."""

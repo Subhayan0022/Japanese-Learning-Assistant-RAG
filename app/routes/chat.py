@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
-from app.models import QuestionRequest, BreakdownRequest
-from app.services.rag_pipeline import ask, breakdown
+from app.models import QuestionRequest, BreakdownRequest, QuizRequest
+from app.services.rag_pipeline import ask, breakdown, quiz
 
 router = APIRouter()
 
@@ -16,5 +16,13 @@ def ask_question(request: QuestionRequest):
 def breakdown_sentence(request: BreakdownRequest):
     try:
         return breakdown(request.sentence, level=request.level)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.post("/quiz")
+def generate_quiz(request: QuizRequest):
+    try:
+        return quiz(request.topic, top_k=5, level=request.level, num_of_questions=request.num_of_questions)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

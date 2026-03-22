@@ -1,9 +1,7 @@
-from asyncio import timeout
-
 import requests
-from config.settings import OLLAMA_URL, MODEL_NAME
+from config.settings import OLLAMA_URL, MODEL_NAME, TEMPERATURE
 
-def generate_response(prompt):
+def generate_response(prompt, temperature=TEMPERATURE):
     try:
         response = requests.post(
             OLLAMA_URL,
@@ -12,7 +10,7 @@ def generate_response(prompt):
                 "prompt": prompt,
                 "stream": False,
                 "options":{
-                    "temperature": 0.2
+                    "temperature": temperature
                 }
             },
             timeout = 30

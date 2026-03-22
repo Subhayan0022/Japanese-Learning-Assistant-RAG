@@ -8,3 +8,8 @@ class QuestionRequest(BaseModel):
 class BreakdownRequest(BaseModel):
     sentence: str
     level: Optional[str] = None
+
+class QuizRequest(BaseModel):
+    topic: str
+    level: Optional[str] = None
+    num_of_questions: Optional[int] = 3

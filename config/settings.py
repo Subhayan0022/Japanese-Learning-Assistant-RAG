@@ -1,7 +1,10 @@
 # LLM
-OLLAMA_URL = "http://localhost:11434/api/generate"
+OLLAMA_URL = "http://127.0.0.1:11434/api/generate"
 MODEL_NAME = "mistral"
 TEMPERATURE = 0.2
+
+# API
+BACKEND_URL = "http://127.0.0.1:8000"
 
 # Embeddings
 EMBEDDING_MODEL = "paraphrase-multilingual-MiniLM-L12-v2"
