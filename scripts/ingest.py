@@ -1,41 +1,78 @@
 import json
-from config.settings import RAW_DATA_PATH, CHUNKS_PATH
+import os
+import fitz
+from config.settings import RAW_DATA_DIR, CHUNKS_PATH, CHUNK_SIZE, CHUNK_OVERLAP
 
-def parse_chunks(filepath):
-    with open(filepath, "r", encoding="utf-8") as f:
-        content = f.read()
-
-    raw_chunks = [block.strip() for block in content.strip().split("---") if block.strip()]
+def split_text(text, chunk_size, overlap):
     chunks = []
+    start = 0
+    while start < len(text):
+        end = start + chunk_size
+        chunk = text[start:end]
 
-    for i in range(0, len(raw_chunks) - 1, 2):
-        metadata_block = raw_chunks[i]
-        content_block = raw_chunks[i + 1]
-
-        metadata = {}
-        for line in metadata_block.splitlines():
-            if ":" in line:
-                key, value = line.split(":", 1)
-                metadata[key.strip()] = value.strip()
-
-        chunks.append({
-            "text": content_block,
-            "metadata": metadata
-        })
+        if chunk.strip():
+            chunks.append(chunk.strip())
+        start = end - overlap
 
     return chunks
 
-if __name__ == "__main__":
-    chunks = parse_chunks(RAW_DATA_PATH)
+def parse_pdf_chunks(filepath):
+    doc = fitz.open(filepath)
+    filename = os.path.basename(filepath)
+    chunks = []
 
-    print(f"Found {len(chunks)} chunks")
+    for page_num in range(len(doc)):
+        page = doc[page_num]
+        text = page.get_text().strip()
+
+        if not text:
+            continue
+
+        page_chunks = split_text(text, CHUNK_SIZE, CHUNK_OVERLAP)
+
+        for chunk_text in page_chunks:
+            chunks.append({
+                "text": chunk_text,
+                "metadata": {
+                    "source": filename,
+                    "page": str(page_num + 1),
+                    "type": "general",
+                    "level": "unknown"
+                }
+            })
+
+    doc.close()
+    return chunks
+
+
+def ingest_all():
+    all_chunks = []
+
+    for filename in os.listdir(RAW_DATA_DIR):
+        filepath = os.path.join(RAW_DATA_DIR, filename)
+        if filename.endswith(".pdf"):
+            chunks = parse_pdf_chunks(filepath)
+            print(f"[PDF] {filename}: {len(chunks)} chunks")
+        else:
+            print(f"[PDF] {filename}: unsupported file type")
+            continue
+
+        all_chunks.extend(chunks)
+
+    return all_chunks
+
+
+if __name__ == "__main__":
+    chunks = ingest_all()
+
+    print(f"TOTAL CHUNKS: {len(chunks)}")
     for idx, chunk in enumerate(chunks):
         print(f"Chunk {idx + 1}")
         print(f"Metadata {chunk['metadata']}")
-        print(f"Text Preview {chunk['text'][:80]}....")
+        print(f"Chunk text: {chunk['text'][:80]}....")
         print()
 
     with open(CHUNKS_PATH, "w", encoding="utf-8") as f:
         json.dump(chunks, f, ensure_ascii=False, indent=4)
 
-    print(f"Chunks saved to {CHUNKS_PATH}")
+    print(f"Chunks written to {CHUNKS_PATH}")

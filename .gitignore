@@ -21,7 +21,8 @@ build/
 *.index
 *.faiss
 
-# Processed data (generated files)
+# Data files
+data/raw/
 data/processed/
 data/faiss_index/
 

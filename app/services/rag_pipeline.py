@@ -6,7 +6,7 @@ from config.settings import DISTANCE_THRESHOLD, TOP_K
 retriever = RetrievalIndex()
 
 def ask(question, top_k=TOP_K, level=None):
-    results = retriever.search(question, top_k=top_k)
+    results = retriever.search(question, top_k=top_k, level=level)
 
     relevant_results = [r for r in results if r["distance"] < DISTANCE_THRESHOLD]
 
