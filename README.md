@@ -2,6 +2,8 @@
 
 A full-stack web application that answers Japanese grammar questions, breaks down sentences, and generates quizzes — powered by Retrieval-Augmented Generation (RAG). Built entirely with local, free tools. No LangChain, no paid APIs.
 
+<img width="980" height="518" alt="image" src="https://github.com/user-attachments/assets/5bc72db6-4e83-4db8-83d9-99a414f8242f" />
+
 ## Features
 
 - **Ask Questions** — Get grounded answers about Japanese grammar, vocabulary, and kanji
