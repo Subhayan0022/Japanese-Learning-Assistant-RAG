@@ -24,3 +24,9 @@ DISTANCE_THRESHOLD = float(os.getenv("DISTANCE_THRESHOLD", "24.0"))
 # Chunking
 CHUNK_SIZE = int(os.getenv("CHUNK_SIZE", "500"))
 CHUNK_OVERLAP = int(os.getenv("CHUNK_OVERLAP", "50"))
+
+#MinIO
+MINIO_URL = os.getenv("MINIO_URL", "http://127.0.0.1:9000")
+MINIO_ACCESS_KEY = os.getenv("MINIO_ACCESS_KEY", "minioadmin")
+MINIO_SECRET_KEY = os.getenv("MINIO_SECRET_KEY", "minioadmin")
+MINIO_BUCKET = os.getenv("MINIO_BUCKET", "japanese-pdfs")
