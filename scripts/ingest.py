@@ -1,6 +1,6 @@
 import json
 import os
-import fitz
+import pymupdf as fitz
 from config.settings import RAW_DATA_DIR, CHUNKS_PATH, CHUNK_SIZE, CHUNK_OVERLAP
 
 def split_text(text, chunk_size, overlap):

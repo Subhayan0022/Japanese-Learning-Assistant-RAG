@@ -13,3 +13,8 @@ class QuizRequest(BaseModel):
     topic: str
     level: Optional[str] = None
     num_of_questions: Optional[int] = 3
+
+class UploadResponse(BaseModel):
+    filename: str
+    chunks_added: int
+    message: str
