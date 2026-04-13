@@ -2,6 +2,7 @@ import numpy as np
 import faiss
 from config.settings import EMBEDDINGS_PATH, FAISS_INDEX_PATH
 
+
 def build_index(embeddings):
     dimensions = embeddings.shape[1]
     faiss_index = faiss.IndexFlatL2(dimensions)

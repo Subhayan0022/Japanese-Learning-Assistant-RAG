@@ -11,6 +11,7 @@ def get_level_instruction(level):
 
     return instructions.get(level.upper(), "Explain at a general level suitable for any learner.")
 
+
 def build_prompt(context, question, level_instruction):
     return f"""You are a Japanese language teaching assistant.
 
@@ -63,6 +64,7 @@ def build_breakdown_prompt(sentence, context, level_instruction):
     
     Grammar Notes:
     (Explain any grammar patterns used in the sentence, based on context)"""
+
 
 def build_quiz_prompt(topic, context, level_instruction, num_of_questions):
     return f"""You are a Japanese language quiz generator.

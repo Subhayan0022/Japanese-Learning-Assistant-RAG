@@ -5,6 +5,13 @@ from config.settings import DISTANCE_THRESHOLD, TOP_K
 
 retriever = RetrievalIndex()
 
+
+def reload_retriever():
+    global retriever
+    retriever = RetrievalIndex()
+    print("Retriever reloaded.")
+
+
 # This function is for answering Japanese related questions.
 def ask(question, top_k=TOP_K, level=None):
     results = retriever.search(question, top_k=top_k, level=level)
@@ -33,6 +40,7 @@ def ask(question, top_k=TOP_K, level=None):
 
     return {"answer": answer, "sources": sources}
 
+
 # This function is for breaking down Japanese text.
 def breakdown(sentence, top_k=TOP_K, level=None):
     results = retriever.search(sentence, top_k=top_k, level=level)
@@ -56,6 +64,7 @@ def breakdown(sentence, top_k=TOP_K, level=None):
     sources = [r["chunk"]["metadata"] for r in relevant_results]
 
     return {"breakdown": answer, "sources": sources}
+
 
 # This function is for generating quiz.
 def quiz(topic, top_k=TOP_K, level=None, num_of_questions=3):
@@ -83,4 +92,3 @@ def quiz(topic, top_k=TOP_K, level=None, num_of_questions=3):
 
     sources = [r["chunk"]["metadata"] for r in relevant_results]
     return {"quiz": answer, "sources": sources}
-

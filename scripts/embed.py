@@ -3,6 +3,7 @@ import numpy as np
 from app.services.embeddings import embed_texts
 from config.settings import CHUNKS_PATH, EMBEDDINGS_PATH
 
+
 def generate_embeddings(chunks):
     texts = [chunk["text"] for chunk in chunks]
 
@@ -11,6 +12,7 @@ def generate_embeddings(chunks):
 
     print(f"Embedding shape: {embeddings.shape}")
     return embeddings
+
 
 if __name__ == "__main__":
     with open(CHUNKS_PATH, "r", encoding="utf-8") as f:

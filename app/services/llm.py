@@ -1,6 +1,7 @@
 import requests
 from config.settings import OLLAMA_URL, MODEL_NAME, TEMPERATURE
 
+
 def generate_response(prompt, temperature=TEMPERATURE):
     try:
         response = requests.post(
@@ -9,11 +10,11 @@ def generate_response(prompt, temperature=TEMPERATURE):
                 "model": MODEL_NAME,
                 "prompt": prompt,
                 "stream": False,
-                "options":{
+                "options": {
                     "temperature": temperature
                 }
             },
-            timeout = 30
+            timeout=30
         )
         return response.json().get("response", "")
     except requests.ConnectionError:

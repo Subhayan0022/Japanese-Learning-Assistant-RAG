@@ -3,6 +3,7 @@ import os
 import pymupdf as fitz
 from config.settings import RAW_DATA_DIR, CHUNKS_PATH, CHUNK_SIZE, CHUNK_OVERLAP
 
+
 def split_text(text, chunk_size, overlap):
     chunks = []
     start = 0
@@ -15,6 +16,7 @@ def split_text(text, chunk_size, overlap):
         start = end - overlap
 
     return chunks
+
 
 def parse_pdf_chunks(filepath):
     doc = fitz.open(filepath)

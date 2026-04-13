@@ -3,6 +3,7 @@ import faiss
 from app.services.embeddings import embed_query
 from config.settings import FAISS_INDEX_PATH, CHUNKS_PATH
 
+
 class RetrievalIndex:
     def __init__(self):
         self.index = faiss.read_index(FAISS_INDEX_PATH)
