@@ -9,7 +9,26 @@ from config.settings import BACKEND_URL
 
 st.set_page_config(page_title="Japanese Learning Assistant", page_icon="🎌")
 
-st.title("Japanese Learning Assistant")
+col_upload, col_title = st.columns([1, 9])
+
+with col_upload:
+    with st.popover("📤"):
+        st.markdown("**Upload a Japanese PDF**")
+        uploaded_file = st.file_uploader("Choose a PDF", type=["pdf"], label_visibility="collapsed")
+        if uploaded_file and st.button("Upload", key="upload_btn"):
+            with st.spinner("Uploading..."):
+                response = requests.post(
+                    f"{BACKEND_URL}/upload",
+                    files={"file": (uploaded_file.name, uploaded_file.getvalue(), "application/pdf")}
+                )
+                if response.status_code == 200:
+                    data = response.json()
+                    st.success(f"Done! {data['chunks_added']} chunks added.")
+                else:
+                    st.error(response.json().get("detail", "Upload failed."))
+
+with col_title:
+    st.title("Japanese Learning Assistant")
 
 if "quiz_questions" not in st.session_state:
     st.session_state["quiz_questions"] = []

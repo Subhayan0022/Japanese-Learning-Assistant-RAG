@@ -1,10 +1,14 @@
+import re
 import pymupdf as fitz
-import numpy as np
-from app.services.embeddings import embed_texts
-from app.services.retrieval import RetrievalIndex
 
-RELEVANCE_THRESHOLD = 50.0
-SAMPLE_PAGES = 3
+SAMPLE_PAGES = 5
+MIN_JAPANESE_CHARS = 50
+
+JAPANESE_PATTERN = re.compile(
+    r'[\u3040-\u309F'   # Hiragana
+    r'\u30A0-\u30FF'    # Katakana
+    r'\u4E00-\u9FFF]'   # Kanji
+)
 
 
 def extract_sample_text(pdf_bytes: bytes) -> str:
@@ -16,21 +20,18 @@ def extract_sample_text(pdf_bytes: bytes) -> str:
     return text.strip()
 
 
-def check_relevance(pdf_bytes: bytes, retriever: RetrievalIndex) -> tuple[bool, str]:
+def check_relevance(pdf_bytes: bytes, *args) -> tuple[bool, str]:
     sample_text = extract_sample_text(pdf_bytes)
 
     if not sample_text:
         return False, "Could not extract text from PDF."
 
-    chunks = [sample_text[i:i + 500] for i in range(0, min(len(sample_text), 2000), 500)]
+    japanese_chars = JAPANESE_PATTERN.findall(sample_text)
+    count = len(japanese_chars)
 
-    embeddings = embed_texts(chunks)
-    distances, _ = retriever.index.search(np.array(embeddings), 1)
-    avg_distance = float(np.mean(distances))
+    print(f"Relevance check — Japanese character count: {count}")
 
-    print(f"Relevance check — avg distance: {avg_distance:.2f}")
-
-    if avg_distance < RELEVANCE_THRESHOLD:
+    if count >= MIN_JAPANESE_CHARS:
         return True, "PDF is relevant to Japanese learning."
     else:
-        return False, f"PDF does not appear to be Japanese learning material (score: {avg_distance:.1f})."
+        return False, f"PDF does not appear to contain Japanese content (found {count} Japanese characters, need {MIN_JAPANESE_CHARS})."
